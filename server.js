@@ -1,4 +1,15 @@
 require('dotenv').config();
+
+// Validate required env vars at startup so problems surface immediately
+const REQUIRED_ENV = ['EMAIL_USER', 'EMAIL_PASS'];
+const missingEnv = REQUIRED_ENV.filter(
+  key => !process.env[key] || process.env[key].startsWith('your-')
+);
+if (missingEnv.length > 0) {
+  console.warn(`[WARN] Missing or placeholder env vars: ${missingEnv.join(', ')}`);
+  console.warn('[WARN] Contact form emails will NOT be sent until these are set in .env');
+}
+
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');

@@ -112,12 +112,16 @@ document.getElementById('cfSubmit').addEventListener('click', async function (e)
     }
   } catch (error) {
     console.error('Form submission error:', error);
-    // Fallback: show success message anyway for demo purposes
-    this.textContent = '✓ Message Sent Successfully!';
-    this.style.background = 'var(--gold3)';
-    this.style.letterSpacing = '.1em';
-    document.querySelectorAll('.cf-in,.cf-sel,.cf-ta').forEach(i => i.disabled = true);
-    // In production, you'd want to handle errors properly
+    this.textContent = 'Send Message';
+    this.disabled = false;
+    let errEl = document.getElementById('cf-error');
+    if (!errEl) {
+      errEl = document.createElement('p');
+      errEl.id = 'cf-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:.85rem;margin-top:.75rem;text-align:center';
+      this.insertAdjacentElement('afterend', errEl);
+    }
+    errEl.textContent = 'Something went wrong. Please try again or call us directly.';
   }
 });
 
