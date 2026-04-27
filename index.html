@@ -970,7 +970,7 @@ footer{background:var(--black);padding:5.5rem 3.5rem 2.5rem}
   <div class="about-grid">
     <div class="about-img-col rev-l">
       <div class="about-gold-strip"></div>
-      <img class="about-photo" src="/about.jpg" alt="Numy — Miami Luxury Real Estate" loading="lazy">
+      <img class="about-photo" src="https://raw.githubusercontent.com/Danielmolina5/Numyhomes2/main/about.jpg" alt="Numy — Miami Luxury Real Estate" loading="eager">
       <div class="about-badge"><div class="ab-n">10+</div><div class="ab-l">Years of Excellence</div></div>
     </div>
     <div class="about-text rev-r">
@@ -1485,13 +1485,14 @@ document.getElementById('cfSubmit').addEventListener('click', async function (e)
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     });
+    const result = await response.json().catch(() => ({}));
     if (response.ok) {
       this.textContent = '✓ Message Sent Successfully!';
       this.style.background = 'var(--gold3)';
       this.style.letterSpacing = '.1em';
       document.querySelectorAll('.cf-in,.cf-sel,.cf-ta').forEach(i => i.disabled = true);
     } else {
-      throw new Error('Server error');
+      throw new Error(result.message || 'Server error');
     }
   } catch (err) {
     console.error('Form error:', err);
@@ -1504,7 +1505,7 @@ document.getElementById('cfSubmit').addEventListener('click', async function (e)
       errEl.style.cssText = 'color:#c0392b;font-size:.85rem;margin-top:.75rem;text-align:center';
       this.insertAdjacentElement('afterend', errEl);
     }
-    errEl.textContent = 'Something went wrong. Please try again or call us directly.';
+    errEl.textContent = err.message || 'Something went wrong. Please try again or call us directly.';
   }
 });
 
