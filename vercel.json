@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "server.js": {
-      "maxDuration": 10
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -15,9 +10,6 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/:path*", "destination": "/server.js" }
   ],
   "env": {
     "NODE_ENV": "production",
