@@ -54,8 +54,8 @@ const limiter = rateLimit({
 const corsOptions = {
   origin: process.env.CORS_ORIGIN || [
     'http://localhost:3000',
-    'https://numyhomes2.vercel.app',
-    /\.vercel\.app$/
+    'https://numyhomes.com',
+    'https://www.numyhomes.com'
   ],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
