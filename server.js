@@ -32,7 +32,8 @@ app.use(helmet({
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", "data:", "https:", "http:"],
-      connectSrc: ["'self'"]
+      frameSrc: ["https://www.youtube.com", "https://www.youtube-nocookie.com"],
+      connectSrc: ["'self'", "https://www.youtube.com"]
     }
   },
   // Disable HSTS for Vercel (they handle HTTPS)
