@@ -10,6 +10,7 @@ if (missingEnv.length > 0) {
   console.warn('[WARN] Contact form emails will NOT be sent until these are set in .env');
 }
 
+const path = require('path');
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
@@ -70,8 +71,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Apply rate limiting to contact form
 app.use('/api/contact', limiter);
 
-// Serve static files
-app.use(express.static('.', {
+// Serve static files using absolute path (required for Vercel serverless)
+app.use(express.static(path.join(__dirname), {
   maxAge: '1d',
   etag: true
 }));
@@ -267,12 +268,15 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 404 handler
+// 404 handler — serve index.html for page routes, JSON for API routes
 app.use((req, res) => {
-  res.status(404).json({
-    error: 'Not Found',
-    message: 'The requested resource was not found on this server.'
-  });
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({
+      error: 'Not Found',
+      message: 'The requested resource was not found on this server.'
+    });
+  }
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Global error handler
