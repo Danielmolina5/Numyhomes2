@@ -16,10 +16,8 @@
       ]
     }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/server.js" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/server.js" }
+  "rewrites": [
+    { "source": "/:path*", "destination": "/server.js" }
   ],
   "env": {
     "NODE_ENV": "production",
