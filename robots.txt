@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /.env
+
+Sitemap: https://numyhomes.com/sitemap.xml
