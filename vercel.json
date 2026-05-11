@@ -6,7 +6,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://numyhomes.com"
+          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://assets.calendly.com; img-src 'self' data: https: http:; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://calendly.com; connect-src 'self' https://numyhomes.com https://formspree.io https://calendly.com"
         }
       ]
     }
